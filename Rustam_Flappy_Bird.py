@@ -182,3 +182,7 @@ while True:
 
     pygame.display.update()
     clock.tick(120)
+
+
+
+#Мой личный рекорд в этой игре 72)))
