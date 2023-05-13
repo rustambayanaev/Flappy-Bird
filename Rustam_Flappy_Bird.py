@@ -1,27 +1,39 @@
+"""Задание для nFactorial
+Автор Рустам Б.Б. дата создания 13.05.2023
+"""
 import pygame, sys, random
 
 def draw_floor():
-	screen.blit(floor_surface,(floor_x_position,900))
-	screen.blit(floor_surface,(floor_x_position + 576,900))
+    # Отрисовка поверхности пола
+    screen.blit(floor_surface, (floor_x_position, 900))
+    screen.blit(floor_surface, (floor_x_position + 576, 900))
 
 def create_pipe():
-	random_pipe_position = random.choice(pipe_height)
-	bottom_pipe = pipe_surface.get_rect(midtop = (700,random_pipe_position))
-	top_pipe = pipe_surface.get_rect(midbottom = (700,random_pipe_position-300))
-	return bottom_pipe, top_pipe
+    # Создание новых труб
+    random_pipe_position = random.choice(pipe_height)
+    # Нижняя труба
+    bottom_pipe = pipe_surface.get_rect(midtop=(700, random_pipe_position))
+    # Верхняя труба
+    top_pipe = pipe_surface.get_rect(midbottom=(700, random_pipe_position - 300))
+    return bottom_pipe, top_pipe
 
 def move_pipes(pipes):
-	for pipe in pipes:
-		pipe.centerx -= 5
-	return pipes
+    # Перемещение труб
+    for pipe in pipes:
+        pipe.centerx -= 5
+    return pipes
 
 def draw_pipes(pipes):
-	for pipe in pipes:
-		if pipe.bottom >= 1024:
-			screen.blit(pipe_surface, pipe)
-		else:
-			flip_pipe = pygame.transform.flip(pipe_surface, False, True)
-			screen.blit(flip_pipe, pipe)
+    # Отрисовка труб
+    for pipe in pipes:
+        if pipe.bottom >= 1024:
+            # Отрисовка нижней трубы
+            screen.blit(pipe_surface, pipe)
+        else:
+            # Отрисовка перевернутой верхней трубы
+            flip_pipe = pygame.transform.flip(pipe_surface, False, True)
+            screen.blit(flip_pipe, pipe)
+
 
 def check_collision(pipes):
 	for pipe in pipes:
